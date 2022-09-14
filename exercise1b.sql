@@ -48,8 +48,36 @@ WHERE DATE(return_date) > DATE(rental_date + INTERVAL rental_duration DAY)) AS o
 --     to 5 sorted by customer_id)
 
 SELECT CONCAT(customer.last_name, ', ', customer.first_name) AS customer,
-INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
-INNER JOIN film ON inventory.film_id = film.film_id
 address.phone, film.title
 FROM rental INNER JOIN customer ON rental.customer_id = customer.customer_id
 INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
+INNER JOIN film ON inventory.film_id = film.film_id
+WHERE rental.return_date <= '20050717'
+AND rental_date + INTERVAL film.rental_duration DAY >= '20050717'
+ORDER BY title
+LIMIT 5;
+
+--     g. Create a list of overdue DVDs. Run the query using ‘20050717’ or ‘2005-07-17’ instead of 
+--     CURRENT_DATE, and without the LIMIT 5. 
+
+SELECT CONCAT(customer.last_name, ', ', customer.first_name) AS customer,
+address.phone, film.title
+FROM rental INNER JOIN customer ON rental.customer_id = customer.customer_id
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
+INNER JOIN film ON inventory.film_id = film.film_id
+WHERE rental.return_date IS NULL
+AND rental_date + INTERVAL film.rental_duration DAY < CURRENT_DATE()
+ORDER BY title
+LIMIT 5;
+
+SELECT CONCAT(customer.last_name, ', ', customer.first_name) AS customer,
+address.phone, film.title
+FROM rental INNER JOIN customer ON rental.customer_id = customer.customer_id
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
+INNER JOIN film ON inventory.film_id = film.film_id
+WHERE rental.return_date IS NULL
+AND rental_date + INTERVAL film.rental_duration DAY < '20050717'
+ORDER BY title;
