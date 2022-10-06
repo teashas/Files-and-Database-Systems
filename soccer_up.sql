@@ -5,6 +5,16 @@
 -- 1. Create a database with tables that replicates the functionality of the Access database described in the Access tutorial. You may design your own database
 -- tables, and populate it with your own team, coach, and player names. But it must meet the following criteria:
 --     a. There must be at least 6 teams.
+
+CREATE TABLE Teams (team VARCHAR(20) PRIMARY KEY, coach VARCHAR(25));
+
+INSERT INTO Teams VALUES ('Blue Team', 'Tashfiq');
+INSERT INTO Teams VALUES ('Purple Team', 'Teasha');
+INSERT INTO Teams VALUES ('Red Team', 'Feema');
+INSERT INTO Teams VALUES ('Yellow Team', 'Subha');
+INSERT INTO Teams VALUES ('Green Team', 'Carl');
+INSERT INTO Teams VALUES ('White Team', 'Pintu');
+
 --     b. Each team must have at least 5 players.
 
 CREATE TABLE Players (player VARCHAR(10) primary key, team VARCHAR(15));
