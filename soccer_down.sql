@@ -6,5 +6,4 @@
 
 DROP TABLES Players;
 DROP TABLES Games;
-DROP TABLES Teams;
 DROP TABLES Schedule;
