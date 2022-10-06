@@ -6,7 +6,7 @@
 -- tables, and populate it with your own team, coach, and player names. But it must meet the following criteria:
 --     a. There must be at least 6 teams.
 
-CREATE TABLE Teams (team VARCHAR(20) PRIMARY KEY, coach VARCHAR(25));
+CREATE TABLE Teams (team VARCHAR(15) PRIMARY KEY, coach VARCHAR(10));
 
 INSERT INTO Teams VALUES ('Blue Team', 'Tashfiq');
 INSERT INTO Teams VALUES ('Purple Team', 'Teasha');
